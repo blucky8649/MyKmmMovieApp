@@ -12,5 +12,5 @@ data class MovieApiResponseModel(
     @SerialName("display")
     val display: Int,
     @SerialName("items")
-    val items: List<MovieModel>
+    val items: List<MovieItemDto>
 )

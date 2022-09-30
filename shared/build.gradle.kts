@@ -84,7 +84,7 @@ android {
     }
 }
 sqldelight {
-    database("AppDB") {
-        packageName = "db"
+    database("AppDatabase") {
+        packageName = "com.example.mykmmmovieapp.db"
     }
 }

@@ -1,0 +1,23 @@
+CREATE TABLE MOVIE_TBL (
+    id INTEGER NOT NULL PRIMARY KEY,
+      title TEXT NOT NULL,
+      subTitle TEXT,
+      thumb TEXT,
+      director TEXT,
+      actor TEXT,
+      publishedAt TEXT,
+      rating REAL AS Float DEFAULT 0 NOT NULL,
+      scrap INTEGER AS Boolean DEFAULT 0 NOT NULL,
+      memo TEXT
+);
+
+upsertMovie {
+    UPDATE MOVIE_TBL
+    SET title = :title, subTitle = :subTitle, thumb = :thumb, director = :director, actor = :actor, publishedAt = :publishedAt, rating = :rating, scrap = :scrap, memo = :memo
+    WHERE id = :id;
+
+    INSERT OR IGNORE INTO MOVIE_TBL (id, title, subTitle, thumb, director, actor, publishedAt, rating, scrap, memo)
+    VALUES(:id, :title, :subTitle, :thumb, :director, :actor, :publishedAt, :rating, :scrap, :memo);
+}
+
+clearMovie: DELETE FROM MOVIE_TBL;
