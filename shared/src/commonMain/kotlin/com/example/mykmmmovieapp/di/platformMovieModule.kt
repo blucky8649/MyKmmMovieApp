@@ -13,3 +13,4 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 
+expect val platformMovieModule: Module

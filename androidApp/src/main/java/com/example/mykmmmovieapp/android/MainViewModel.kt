@@ -10,11 +10,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
+class MainViewModel (
     val GetMovieListUseCase: GetMovieListUseCase
 ): ViewModel() {
     init {
+        Log.d("ViewModel", "ViewModel Created..")
         viewModelScope.launch {
             GetMovieListUseCase(true, "서울").collectLatest {
                 Log.d("ViewModel", it.toString())

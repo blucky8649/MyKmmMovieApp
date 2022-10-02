@@ -7,6 +7,7 @@ plugins {
 }
 group = "com.smp"
 version = "1.0-SNAPSHOT"
+
 buildConfig {
     val prop = com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)
     buildConfigField("String", "CLIENT_ID", "\"${prop.getProperty("naverapi.clientid")}\"")
