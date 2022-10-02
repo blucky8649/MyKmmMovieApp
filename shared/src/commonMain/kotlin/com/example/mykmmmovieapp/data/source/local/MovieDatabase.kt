@@ -14,7 +14,7 @@ class MovieDatabase(databaseDriverFactory: DatabaseDriverFactory) {
     private val database = AppDatabase(databaseDriverFactory.createDriver())
     private val dbQuery = database.appDatabaseQueries
 
-    internal fun upsertMovies(movies: List<MovieItemEntity>) {
+    fun upsertMovies(movies: List<MovieItemEntity>) {
         dbQuery.transaction {
             movies.forEach { movie ->
                 dbQuery.upsertMovie(
@@ -33,15 +33,15 @@ class MovieDatabase(databaseDriverFactory: DatabaseDriverFactory) {
             }
         }
     }
-    internal fun getMovieList(): Flow<List<MovieItem>> {
+    fun getMovieList(): Flow<List<MovieItem>> {
         return dbQuery.selectMovie(mapper = ::mapMovie).asFlow().mapToList()
     }
 
-    internal fun clearMovies() {
+    fun clearMovies() {
         dbQuery.clearMovie()
     }
 
-    private fun mapMovie(
+    fun mapMovie(
         id: Long,
         title: String,
         subTitle: String?,
