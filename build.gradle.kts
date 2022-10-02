@@ -18,6 +18,7 @@ buildscript {
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
         classpath("com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.42")
     }
 }
 
@@ -25,6 +26,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven(url = "https://dl.bintray.com/ekito/koin")
     }
 }
 

@@ -27,6 +27,7 @@ kotlin {
     val ktorVersion = "1.4.3"
     val coroutinesVersion = "1.5.0"
     val serializationVersion = "1.2.2"
+    val koinVersion = "3.2.0"
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -37,6 +38,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 implementation("com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion")
+                implementation("io.insert-koin:koin-core:$koinVersion")
             }
         }
         val commonTest by getting {
