@@ -36,6 +36,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+                implementation("com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion")
             }
         }
         val commonTest by getting {

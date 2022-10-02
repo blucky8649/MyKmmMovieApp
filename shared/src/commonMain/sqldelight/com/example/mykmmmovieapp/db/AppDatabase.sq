@@ -19,5 +19,5 @@ upsertMovie {
     INSERT OR IGNORE INTO MOVIE_TBL (id, title, subTitle, thumb, director, actor, publishedAt, rating, scrap, memo)
     VALUES(:id, :title, :subTitle, :thumb, :director, :actor, :publishedAt, :rating, :scrap, :memo);
 }
-
+selectMovie: SELECT * FROM MOVIE_TBL;
 clearMovie: DELETE FROM MOVIE_TBL;
