@@ -17,7 +17,7 @@ class LocalMovieDataSource(
         db.upsertMovies(movies.map { it.toMovieItemEntity() })
     }
 
-    override fun getMovieList(): Flow<List<MovieItem>> {
+    override fun getMovieList(): List<MovieItem> {
         return db.getMovieList()
     }
 

@@ -16,9 +16,7 @@ class MainViewModel (
     init {
         Log.d("ViewModel", "ViewModel Created..")
         viewModelScope.launch {
-            GetMovieListUseCase(true, "서울").collectLatest {
-                Log.d("ViewModel", it.toString())
-            }
+            GetMovieListUseCase(true, "서울")
         }
     }
 }

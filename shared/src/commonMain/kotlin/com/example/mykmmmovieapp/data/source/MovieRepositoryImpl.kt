@@ -18,7 +18,7 @@ class MovieRepositoryImpl(
     private val moviesMutex = Mutex()
     private var page = 0
 
-    override suspend fun getMovieList(refresh: Boolean, searchQuery: String): Flow<List<MovieItem>> {
+    override suspend fun getMovieList(refresh: Boolean, searchQuery: String): List<MovieItem> {
         if (refresh) {
             remoteMovieDataSource.searchMovies(searchQuery).also { networkResult ->
                 moviesMutex.withLock {
