@@ -4,6 +4,7 @@ import com.example.mykmmmovieapp.data.source.local.LocalMovieDataSource
 import com.example.mykmmmovieapp.data.source.remote.RemoteMovieDataSource
 import com.example.mykmmmovieapp.domain.MovieRepository
 import com.example.mykmmmovieapp.domain.entity.MovieItem
+import com.example.mykmmmovieapp.util.removeTags
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
@@ -27,6 +28,8 @@ class MovieRepositoryImpl(
                 }
             }
         }
-        return localMovieDataSource.getMovieList()
+        return localMovieDataSource.getMovieList().map {
+            it.copy(title = removeTags(it.title))
+        }
     }
 }

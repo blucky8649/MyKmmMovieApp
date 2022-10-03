@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import com.example.mykmmmovieapp.Greeting
+import com.example.mykmmmovieapp.android.ui.movieList.MovieListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -37,10 +38,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    val requestState = remember { mutableStateOf("") }
-                    val uiState = viewModel.uiState.collectAsState()
-
-                    Greeting(uiState.value.movieList.toString())
+                    MovieListScreen(viewModel = viewModel)
                 }
             }
         }

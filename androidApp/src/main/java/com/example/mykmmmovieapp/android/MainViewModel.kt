@@ -14,20 +14,22 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 data class MovieUiState(
-    val isLoading: Boolean = true,
+    val isLoading: Boolean = false,
     val movieList: List<MovieItem> = emptyList(),
     val searchQuery: String = "서울",
+    val isRefreshing: Boolean = false
     )
 
 class MainViewModel (
     val GetMovieListUseCase: GetMovieListUseCase
 ): ViewModel() {
-    init {
-        fetchMovies()
-    }
 
     private val _uiState = MutableStateFlow(MovieUiState())
     val uiState = _uiState.asStateFlow()
+
+    init {
+        fetchMovies()
+    }
 
     private var fetchJob: Job? = null
 
@@ -37,10 +39,11 @@ class MainViewModel (
                 fetchMovies(refresh = true)
             }
             is MovieListEvent.OnSearchQueryChange -> {
+                _uiState.update { it.copy(searchQuery = event.searchQuery) }
                 fetchJob?.cancel()
                 fetchJob = viewModelScope.launch {
                     delay(500L)
-                    fetchMovies(true, event.searchQuery)
+                    fetchMovies(true)
                 }
 
             }
