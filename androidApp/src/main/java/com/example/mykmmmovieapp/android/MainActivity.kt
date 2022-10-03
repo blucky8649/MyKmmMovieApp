@@ -38,21 +38,9 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val requestState = remember { mutableStateOf("") }
+                    val uiState = viewModel.uiState.collectAsState()
 
-                    Greeting(requestState.value)
-
-                    LaunchedEffect(key1 = requestState) {
-                        kotlin.runCatching {
-                            MovieRepository.api.searchMovies("아이언맨")
-                        }.onSuccess {
-                            requestState.value = it.toString()
-                        }.onFailure {
-                            Log.d("Main", "Failed : $it")
-
-                        }
-
-
-                    }
+                    Greeting(uiState.value.movieList.toString())
                 }
             }
         }
