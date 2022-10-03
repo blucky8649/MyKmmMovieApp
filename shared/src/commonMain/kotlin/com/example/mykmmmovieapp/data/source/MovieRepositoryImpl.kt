@@ -21,12 +21,14 @@ class MovieRepositoryImpl(
 
     override suspend fun getMovieList(refresh: Boolean, searchQuery: String): List<MovieItem> {
         if (refresh) {
-            remoteMovieDataSource.searchMovies(searchQuery).also { networkResult ->
-                moviesMutex.withLock {
-                    localMovieDataSource.clearMovies()
-                    localMovieDataSource.upsertMovies(networkResult)
+            try {
+                remoteMovieDataSource.searchMovies(searchQuery).also { networkResult ->
+                    moviesMutex.withLock {
+                        localMovieDataSource.clearMovies()
+                        localMovieDataSource.upsertMovies(networkResult)
+                    }
                 }
-            }
+            } catch (_: Exception) {}
         }
         return localMovieDataSource.getMovieList().map {
             it.copy(title = removeTags(it.title))
