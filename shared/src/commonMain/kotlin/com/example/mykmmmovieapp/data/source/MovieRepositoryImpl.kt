@@ -4,6 +4,7 @@ import com.example.mykmmmovieapp.data.source.local.LocalMovieDataSource
 import com.example.mykmmmovieapp.data.source.remote.RemoteMovieDataSource
 import com.example.mykmmmovieapp.domain.MovieRepository
 import com.example.mykmmmovieapp.domain.entity.MovieItem
+import com.example.mykmmmovieapp.util.removeTags
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
@@ -18,15 +19,19 @@ class MovieRepositoryImpl(
     private val moviesMutex = Mutex()
     private var page = 0
 
-    override suspend fun getMovieList(refresh: Boolean, searchQuery: String): Flow<List<MovieItem>> {
+    override suspend fun getMovieList(refresh: Boolean, searchQuery: String): List<MovieItem> {
         if (refresh) {
-            remoteMovieDataSource.searchMovies(searchQuery).also { networkResult ->
-                moviesMutex.withLock {
-                    localMovieDataSource.clearMovies()
-                    localMovieDataSource.upsertMovies(networkResult)
+            try {
+                remoteMovieDataSource.searchMovies(searchQuery).also { networkResult ->
+                    moviesMutex.withLock {
+                        localMovieDataSource.clearMovies()
+                        localMovieDataSource.upsertMovies(networkResult)
+                    }
                 }
-            }
+            } catch (_: Exception) {}
         }
-        return localMovieDataSource.getMovieList()
+        return localMovieDataSource.getMovieList().map {
+            it.copy(title = removeTags(it.title))
+        }
     }
 }

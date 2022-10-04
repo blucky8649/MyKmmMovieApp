@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import com.example.mykmmmovieapp.Greeting
+import com.example.mykmmmovieapp.android.ui.movieList.MovieListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -37,22 +38,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    val requestState = remember { mutableStateOf("") }
-
-                    Greeting(requestState.value)
-
-                    LaunchedEffect(key1 = requestState) {
-                        kotlin.runCatching {
-                            MovieRepository.api.searchMovies("아이언맨")
-                        }.onSuccess {
-                            requestState.value = it.toString()
-                        }.onFailure {
-                            Log.d("Main", "Failed : $it")
-
-                        }
-
-
-                    }
+                    MovieListScreen(viewModel = viewModel)
                 }
             }
         }

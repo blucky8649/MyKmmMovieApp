@@ -33,8 +33,8 @@ class MovieDatabase(databaseDriverFactory: DatabaseDriverFactory) {
             }
         }
     }
-    fun getMovieList(): Flow<List<MovieItem>> {
-        return dbQuery.selectMovie(mapper = ::mapMovie).asFlow().mapToList()
+    fun getMovieList(): List<MovieItem> {
+        return dbQuery.selectMovie(mapper = ::mapMovie).executeAsList()
     }
 
     fun clearMovies() {

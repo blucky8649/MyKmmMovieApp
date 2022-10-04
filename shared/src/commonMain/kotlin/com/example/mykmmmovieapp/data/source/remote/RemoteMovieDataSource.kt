@@ -22,7 +22,7 @@ class RemoteMovieDataSource(
         throw UnsupportedOperationException()
     }
 
-    override fun getMovieList(): Flow<List<MovieItem>> {
+    override fun getMovieList(): List<MovieItem> {
         throw UnsupportedOperationException()
     }
 
