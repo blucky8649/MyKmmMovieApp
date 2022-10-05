@@ -35,7 +35,7 @@ fun MovieItem(
                     model = item.thumb,
                     contentDescription = null,
                     loading = {
-                        CircularProgressIndicator()
+                        CircularProgressIndicator(Modifier.width(5.dp).height(5.dp))
                     },
                     contentScale = ContentScale.Crop,
                 )
