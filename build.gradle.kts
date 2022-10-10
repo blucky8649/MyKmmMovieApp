@@ -12,6 +12,9 @@ buildscript {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven {
+            url = uri("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
+        }
     }
     val kotlinVersion = "1.5.21"
     val sqlDelightVersion: String by project

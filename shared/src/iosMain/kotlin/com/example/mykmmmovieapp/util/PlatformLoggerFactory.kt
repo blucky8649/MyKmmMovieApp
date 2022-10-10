@@ -1,6 +1,6 @@
 package com.example.mykmmmovieapp.util
 
-import io.ktor.client.features.logging.*
+import io.ktor.client.plugins.logging.*
 import platform.Foundation.NSLog
 
 actual fun createPlatformLogger(defaultTag: String): PlatformLogger {
