@@ -1,9 +1,8 @@
 package com.example.mykmmmovieapp.util
 
-import io.ktor.client.features.logging.*
 
 expect fun createPlatformLogger(defaultTag: String): PlatformLogger
-expect fun createPlatformKtorLogger(defaultTag: String): Logger
+expect fun createPlatformKtorLogger(defaultTag: String): io.ktor.client.plugins.logging.Logger
 
 abstract class PlatformLogger(protected val defaultTag: String) {
     abstract fun v(message: String)

@@ -1,7 +1,7 @@
 package com.example.mykmmmovieapp.util
 
 import android.util.Log
-import io.ktor.client.features.logging.*
+import io.ktor.client.plugins.logging.*
 
 actual fun createPlatformLogger(defaultTag: String): PlatformLogger {
     return AndroidPlatformLogger(defaultTag)
