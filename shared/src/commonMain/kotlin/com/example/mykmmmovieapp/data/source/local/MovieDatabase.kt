@@ -54,16 +54,7 @@ class MovieDatabase(databaseDriverFactory: DatabaseDriverFactory) {
         memo: String?
     ): MovieItem {
         return MovieItem(
-            id = id,
-            title = title,
-            subTitle = subTitle,
-            thumb = thumb,
-            director = director,
-            actor = actor,
-            publishedAt = publishedAt,
-            rating = rating,
-            scrap = scrap,
-            memo = memo
+            id, title, subTitle
         )
     }
 }

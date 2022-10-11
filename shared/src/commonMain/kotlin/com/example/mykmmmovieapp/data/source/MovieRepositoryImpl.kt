@@ -20,9 +20,12 @@ class MovieRepositoryImpl(
     private var page = 0
 
     override suspend fun getMovieList(refresh: Boolean, searchQuery: String): List<MovieItem> {
+        println("Start")
         if (refresh) {
             try {
+                println("refresh!")
                 remoteMovieDataSource.searchMovies(searchQuery).also { networkResult ->
+                    println("networkResult: $networkResult")
                     moviesMutex.withLock {
                         localMovieDataSource.clearMovies()
                         localMovieDataSource.upsertMovies(networkResult)

@@ -13,6 +13,10 @@ class LocalMovieDataSource(
         throw UnsupportedOperationException()
     }
 
+    override suspend fun searchMoviesAsFlow(keyword: String): Flow<List<MovieItem>> {
+        throw UnsupportedOperationException()
+    }
+
     override fun upsertMovies(movies: List<MovieItem>) {
         db.upsertMovies(movies.map { it.toMovieItemEntity() })
     }

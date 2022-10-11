@@ -7,11 +7,10 @@ data class MovieItem(
     val id: Long = -1L,
     val title: String,
     val subTitle: String? = null,
+    val link: String? = null,
     val thumb: String? = null,
     val director: String? = null,
     val actor: String? = null,
     val publishedAt: String? = null,
     val rating: Float = 0f,
-    val scrap: Boolean = false,
-    val memo: String? = null
 )

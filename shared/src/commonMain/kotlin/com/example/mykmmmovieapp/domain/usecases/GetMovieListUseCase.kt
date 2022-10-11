@@ -12,6 +12,8 @@ class GetMovieListUseCase(
             // 만약 검색 쿼리가 빈값이면 그냥 이전 데이터 그대로 노출
             return movieRepository.getMovieList(!refresh, searchQuery)
         }
-        return movieRepository.getMovieList(refresh, searchQuery)
+        val list = movieRepository.getMovieList(refresh, searchQuery)
+        println("야호 ~~ $refresh, searchQuery: $searchQuery, list: $list")
+        return list
     }
 }

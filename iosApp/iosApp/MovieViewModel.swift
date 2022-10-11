@@ -9,19 +9,36 @@
 import Foundation
 import shared
 
-class MovieViewModel {
-    var hp = ViewModelHelper()
-    @Published var movieList: [MovieItem] = []
-    
-    
-    func fetchMovies(
-        refresh: Bool = true,
-        searchQuery: String = "아"
-    ) {
-        hp.getMovieList(refresh: refresh, searchQuery: searchQuery, completionHandler: {
-            movies, error in
-            print("log is ", movies!)
-            self.movieList = movies ?? []
-        } )
+extension ContentView {
+    class MovieViewModel : ObservableObject {
+        var hp = ViewModelHelper()
+        @Published var text = "Loading..."
+        @Published var movieItem: [MovieItem]? = nil
+        
+        init() {
+            hp.getMovieListUseCase.invoke(refresh: true, searchQuery: "서울") { list, error in
+                DispatchQueue.main.async {
+                    if let list = list {
+                        self.text = list.description
+                        self.movieItem = list
+                    } else {
+                        self.text = error?.localizedDescription ?? "error"
+                    }
+                }
+
+            }
+            
+//            Greeting().searchMovies(keyword: "서울") { result, error in
+//                DispatchQueue.main.async {
+//                    if let result = result {
+//                        self.text = result
+//                    } else {
+//                        self.text = error?.localizedDescription ?? "error"
+//                    }
+//                }
+//
+//            }
+        }
     }
 }
+
