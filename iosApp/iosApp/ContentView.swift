@@ -8,7 +8,7 @@ struct ContentView: View {
 	var body: some View {
         List(viewModel.movieItem ?? [], id: \.id) { item in
             VStack {
-                Text(item.title)
+                MovieRow(movieItem: item)
             }
             
         }

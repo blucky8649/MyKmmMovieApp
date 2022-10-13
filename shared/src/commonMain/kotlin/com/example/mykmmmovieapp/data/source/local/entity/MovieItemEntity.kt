@@ -12,6 +12,5 @@ data class MovieItemEntity(
     val actor: String? = null,
     val publishedAt: String? = null,
     val rating: Float = 0f,
-    val scrap: Boolean = false,
-    val memo: String? = null
+    val link: String? = null
 )
