@@ -14,9 +14,8 @@ extension ContentView {
         var hp = ViewModelHelper()
         @Published var text = "Loading..."
         @Published var movieItem: [MovieItem]? = nil
-        
-        init() {
-            hp.getMovieListUseCase.invoke(refresh: true, searchQuery: "서울") { list, error in
+        func searchMovie(searchQuery: String) {
+            hp.getMovieListUseCase.invoke(refresh: true, searchQuery: searchQuery) { list, error in
                 DispatchQueue.main.async {
                     if let list = list {
                         self.text = list.description
@@ -27,6 +26,10 @@ extension ContentView {
                 }
 
             }
+        }
+        
+        init() {
+            searchMovie(searchQuery: "서울")
             
 //            Greeting().searchMovies(keyword: "서울") { result, error in
 //                DispatchQueue.main.async {
