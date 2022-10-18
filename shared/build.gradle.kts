@@ -68,7 +68,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
-                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation("io.ktor:ktor-client-ios:$ktorVersion")
                 implementation( "io.ktor:ktor-client-logging:$ktorVersion")
             }
         }

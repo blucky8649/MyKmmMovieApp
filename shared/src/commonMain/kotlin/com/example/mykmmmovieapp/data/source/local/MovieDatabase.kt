@@ -26,8 +26,7 @@ class MovieDatabase(databaseDriverFactory: DatabaseDriverFactory) {
                     actor = movie.actor,
                     publishedAt = movie.publishedAt,
                     rating = movie.rating,
-                    scrap = movie.scrap,
-                    memo = movie.memo
+                    link = movie.link
                 )
 
             }
@@ -50,8 +49,8 @@ class MovieDatabase(databaseDriverFactory: DatabaseDriverFactory) {
         actor: String?,
         publishedAt: String?,
         rating: Float,
-        scrap: Boolean,
-        memo: String?
+        link: String?
+
     ): MovieItem {
         return MovieItem(
             id = id,
@@ -62,8 +61,7 @@ class MovieDatabase(databaseDriverFactory: DatabaseDriverFactory) {
             actor = actor,
             publishedAt = publishedAt,
             rating = rating,
-            scrap = scrap,
-            memo = memo
+            link = link
         )
     }
 }

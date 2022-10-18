@@ -5,12 +5,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MovieItemDto(
-    @SerialName("id")
-    val id: Long = -1L,
     @SerialName("title")
     val title: String,
     @SerialName("subtitle")
     val subTitle: String? = null,
+    @SerialName("link")
+    val link: String? = null,
     @SerialName("image")
     val thumb: String? = null,
     @SerialName("director")
@@ -21,8 +21,4 @@ data class MovieItemDto(
     val publishedAt: String? = null,
     @SerialName("userRating")
     val rating: Float = 0f,
-    @SerialName("scrap")
-    val scrap: Boolean = false,
-    @SerialName("memo")
-    val memo: String? = null
 )

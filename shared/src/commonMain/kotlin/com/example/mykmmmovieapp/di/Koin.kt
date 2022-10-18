@@ -8,12 +8,15 @@ import com.example.mykmmmovieapp.data.source.remote.MovieApi
 import com.example.mykmmmovieapp.data.source.remote.RemoteMovieDataSource
 import com.example.mykmmmovieapp.domain.MovieRepository
 import com.example.mykmmmovieapp.domain.usecases.GetMovieListUseCase
+import org.koin.core.Koin
+import org.koin.core.parameter.parametersOf
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
+import kotlin.reflect.KClass
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
@@ -35,11 +38,22 @@ val movieModule = module {
 
         )
     }
-    factory<MovieDataSource>(named("local")) { LocalMovieDataSource(get()) }
-    factory<MovieDataSource>(named("remote")) { RemoteMovieDataSource(get()) }
-    factory { MovieDatabase(get()) }
-    factory { MovieApi() }
+    single<MovieDataSource>(named("local")) { LocalMovieDataSource(get()) }
+    single<MovieDataSource>(named("remote")) { RemoteMovieDataSource(get()) }
+    single { MovieDatabase(get()) }
+    single { MovieApi() }
+    single { GetMovieListUseCase(get()) }
 }
+
 val useCasesModule = module {
-    factory { GetMovieListUseCase(get()) }
+
+}
+
+fun createKoinApp() = koinApplication {
+    modules(movieModule, platformMovieModule, useCasesModule)
+}
+
+@Suppress("UNCHECKED_CAST")
+fun <T> Koin.getDependency(clazz: KClass<*>): T {
+    return get(clazz, null) { parametersOf(clazz.simpleName) } as T
 }

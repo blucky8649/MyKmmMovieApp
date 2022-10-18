@@ -15,13 +15,26 @@ fun MovieEntity.toMovie(): Movie {
 
 fun MovieItemEntity.toMovieItem(): MovieItem {
     return MovieItem(
-        id, title, subTitle, thumb, director, actor, publishedAt, rating, scrap, memo
+        title = title,
+        subTitle = subTitle,
+        thumb = thumb,
+        director = director,
+        actor = actor,
+        publishedAt = publishedAt,
+        rating = rating
     )
 }
 
 fun MovieItem.toMovieItemEntity(): MovieItemEntity {
     return MovieItemEntity(
-        id, title, subTitle, thumb, director, actor, publishedAt, rating, scrap, memo
+        id = id,
+        title = title,
+        subTitle = subTitle,
+        thumb = thumb,
+        director = director,
+        actor = actor,
+        publishedAt = publishedAt,
+        rating = rating
     )
 }
 
@@ -33,6 +46,13 @@ fun MovieApiResponseModel.toMovie(): Movie {
 
 fun MovieItemDto.toMovieItem(): MovieItem {
     return MovieItem(
-        id, title, subTitle, thumb, director, actor, publishedAt, rating, scrap
+        title = title,
+        subTitle = subTitle,
+        link = link,
+        thumb = thumb,
+        director = director,
+        actor = actor,
+        publishedAt = publishedAt,
+        rating = rating
     )
 }

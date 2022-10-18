@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MovieApiResponseModel(
+    @SerialName("lastBuildDate")
+    val lastBuildData: String,
     @SerialName("total")
     val total: Int,
     @SerialName("start")

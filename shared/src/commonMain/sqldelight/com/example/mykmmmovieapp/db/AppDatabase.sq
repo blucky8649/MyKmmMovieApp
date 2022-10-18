@@ -7,17 +7,16 @@ CREATE TABLE MOVIE_TBL (
       actor TEXT,
       publishedAt TEXT,
       rating REAL AS Float DEFAULT 0 NOT NULL,
-      scrap INTEGER AS Boolean DEFAULT 0 NOT NULL,
-      memo TEXT
+      link TEXT
 );
 
 upsertMovie {
     UPDATE MOVIE_TBL
-    SET title = :title, subTitle = :subTitle, thumb = :thumb, director = :director, actor = :actor, publishedAt = :publishedAt, rating = :rating, scrap = :scrap, memo = :memo
+    SET title = :title, subTitle = :subTitle, thumb = :thumb, director = :director, actor = :actor, publishedAt = :publishedAt, rating = :rating, link = :link
     WHERE id = :id;
 
-    INSERT OR IGNORE INTO MOVIE_TBL (id, title, subTitle, thumb, director, actor, publishedAt, rating, scrap, memo)
-    VALUES(:id, :title, :subTitle, :thumb, :director, :actor, :publishedAt, :rating, :scrap, :memo);
+    INSERT OR IGNORE INTO MOVIE_TBL (id, title, subTitle, thumb, director, actor, publishedAt, rating, link)
+    VALUES(:id, :title, :subTitle, :thumb, :director, :actor, :publishedAt, :rating, :link);
 }
 selectMovie: SELECT * FROM MOVIE_TBL;
 clearMovie: DELETE FROM MOVIE_TBL;
